@@ -15,6 +15,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 
+const uint16_t PROGMEM boot_combo[] = {KC_LEFT_ALT, KC_LEFT_SHIFT, KC_LEFT_CTRL, KC_4, KC_5, KC_6, COMBO_END};
+
+combo_t key_combos[] = {
+    COMBO(boot_combo, QK_BOOT)
+};
+
 void matrix_scan_user(void) {
 
    // joystick_set_axis(0, analogReadPin(GP26));
