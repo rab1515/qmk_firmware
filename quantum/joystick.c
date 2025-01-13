@@ -16,6 +16,7 @@
 
 #include "joystick.h"
 #include "wait.h"
+#include <math.h>
 
 #if defined(JOYSTICK_ANALOG)
 #    include "analog.h"
@@ -110,7 +111,20 @@ int16_t joystick_read_axis(uint8_t axis) {
     ranged_val = ranged_val < -JOYSTICK_MAX_VALUE ? -JOYSTICK_MAX_VALUE : ranged_val;
     ranged_val = ranged_val > JOYSTICK_MAX_VALUE ? JOYSTICK_MAX_VALUE : ranged_val;
 
-    return ranged_val;
+    double normal = (double)ranged_val/(double)JOYSTICK_MAX_VALUE;
+    double corrected;
+
+    if(normal>0)
+    {
+        corrected = (1 - sqrt(pow((normal-1),4)));
+    }
+    else
+    {
+        corrected = -1*(1 - sqrt(pow((normal+1),4)));
+    }
+
+
+    return corrected*JOYSTICK_MAX_VALUE;
 }
 
 void joystick_init_axes(void) {
