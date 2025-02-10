@@ -28,16 +28,27 @@
         "vid": "0xFEED"
     },
     "rgblight": {
-        "led_count" : 30,
-        "led_map" : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 25 ,12, 13, 14, 24, 25, 26, 27, 28, 29, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+        "led_count" : 27,
+        "led_map" : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ,12, 13, 14, 24, 25, 15, 16, 17, 18, 19, 20, 21, 22, 23, 26 ],
         "max_brightness": 255,
-        "hue_steps" : 8,
+        "hue_steps" : 4,
+        "saturation_steps" : 8,
         "default" : {
-            "animation": "knight"
+            "animation": "rainbow_swirl"
         },
         "animations" : {
-            "knight": true
-        }
+            "static_light": true,
+            "rainbow_mood": false,
+            "rainbow_swirl": true,
+            "snake": false,
+            "knight": true,
+            "static_gradient": false,
+            "breathing": false,
+            "twinkle": false,
+            "christmas": false,
+            "rgb_test": false,
+            "alternating": false,
+        },
     },
     "ws2812": {
         "pin" : "GP23",
