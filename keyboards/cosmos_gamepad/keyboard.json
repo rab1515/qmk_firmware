@@ -1,6 +1,6 @@
 {
     "manufacturer": "rab1515",
-    "keyboard_name": "cosmos",
+    "keyboard_name": "cosmos_gamepad",
     "maintainer": "rab1515",
     "bootloader": "rp2040",
     "diode_direction": "COL2ROW",
@@ -9,6 +9,7 @@
         "command": false,
         "console": true,
         "extrakey": true,
+        "rgblight": true,
         "nkro": true
     },
     "bootmagic":
@@ -26,6 +27,23 @@
         "pid": "0x0000",
         "vid": "0xFEED"
     },
+    "rgblight": {
+        "led_count" : 24,
+
+        "max_brightness": 127,
+        "default" : {
+            "animation": "static_light",
+        },
+        "animations" : {
+            "breathing": true,
+            "rainbow_mood": true,
+            "snake": true
+        },
+    },
+    "ws2812": {
+        "pin" : "GP23",
+        "driver": "vendor",
+    }
     "layouts": {
         "LAYOUT": {
             "layout": [
