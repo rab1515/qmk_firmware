@@ -10,58 +10,93 @@
  * edit it directly.
  */
 
-enum anne_pro_keycodes {
-    SOCD_S, //A->S
-    SOCD_F //D->F
+enum cosmos_gamepad_keycodes {
+    SOCD_W = SAFE_RANGE,
+    SOCD_A,
+    SOCD_S,
+    SOCD_D
 };
-bool s_down = false;
-bool f_down = false;
 
+bool w_down = false;
+bool a_down = false;
+bool s_down = false;
+bool d_down = false;
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [0] = LAYOUT(KC_ESC, KC_TAB, KC_CAPS, KC_LSFT, KC_1, KC_Q, KC_A, KC_Z, KC_2, KC_W, SOCD_S, KC_X, KC_LBRC, KC_3, KC_E, KC_D, KC_C, KC_RBRC, KC_SPC, KC_LCTL, KC_4, KC_R, SOCD_F, KC_V, KC_LGUI, KC_BSPC, KC_LALT, KC_5, KC_T, KC_G, KC_B, MO(2), MO(1), KC_LCTL, KC_Y, KC_H, KC_N, MO(1), MO(2), KC_7, KC_U, KC_J, KC_M, KC_RGUI, KC_NO, KC_RALT, KC_8, KC_I, KC_K, KC_COMM, KC_LBRC, KC_BSPC, KC_RCTL, KC_9, KC_O, KC_L, KC_DOT, KC_RBRC, KC_0, KC_P, KC_SCLN, KC_SLSH, KC_EQL, KC_BSLS, KC_QUOT, KC_SCLN),
-    [1] = LAYOUT(KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_HOME, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_PGUP, KC_PGDN, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_DEL, KC_END, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_NO, KC_NO, KC_NO, KC_NO, KC_TRNS, KC_TRNS, KC_NO, KC_NO, KC_LEFT, KC_NO, KC_TRNS, KC_TRNS, KC_TRNS, KC_NO, KC_NO, KC_UP, KC_DOWN, KC_NO, KC_TRNS, KC_TRNS, KC_NO, KC_NO, KC_RGHT, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO),
-    [2] = LAYOUT(KC_F1, KC_TRNS, KC_TRNS, KC_TRNS, KC_F2, KC_TRNS, KC_TRNS, KC_TRNS, KC_F3, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_F4, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_F5, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_F6, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_NO, KC_NO, KC_NO, KC_TRNS, KC_F7, KC_TRNS, KC_F8, KC_P7, KC_P4, KC_P1, KC_TRNS, KC_TRNS, KC_NO, KC_P8, KC_P5, KC_P2, KC_P0, KC_TRNS, KC_TRNS, KC_NO, KC_P9, KC_P6, KC_P3, KC_PDOT, KC_TRNS, KC_F11, KC_MINS, KC_NO, KC_NO, KC_F12, KC_NO, KC_NO, KC_NO)
+    [0] = LAYOUT(KC_ESC, KC_GRV, KC_TAB, KC_CAPS, KC_LSFT, KC_LCTL, KC_1, KC_Q, SOCD_A, KC_Z, KC_LBRC, KC_F5, KC_2, SOCD_W, SOCD_S, KC_X, KC_3, KC_E, SOCD_D, KC_C, KC_RBRC, KC_SPC, KC_COMM, KC_4, KC_R, KC_F, KC_V, KC_ENT, KC_DOT, LT(1,KC_5), KC_T, KC_G, KC_B, KC_N, KC_M, KC_LALT),
+    [1] = LAYOUT(KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RGB_HUI, RGB_SPI, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RGB_SAI, KC_NO, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RGB_MOD, RGB_VAI, KC_NO)
 };
+
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case SOCD_S:
+        case SOCD_W:
             if (record->event.pressed) {
-                if (f_down)
-                {
-                    unregister_code(KC_F);
+                if (s_down) {
+                    unregister_code(KC_S);
                 }
-                register_code(KC_S);
-                s_down = true;
-            } else
-            {
-                unregister_code(KC_S);
-                s_down = false;
+                register_code(KC_W);
+                w_down = true;
+            } else {
+                unregister_code(KC_W);
+                w_down = false;
 
-                if (f_down) {
-                    register_code(KC_F);
+                if (s_down) {
+                    register_code(KC_S);
                 }
 
             }
             return false;
             break;
-        case SOCD_F:
-            if (record->event.pressed)
-            {
-                if (s_down) {
-                    unregister_code(KC_S);
+        case SOCD_A:
+            if (record->event.pressed) {
+                if (d_down) {
+                    unregister_code(KC_D);
                 }
-                register_code(KC_F);
-                f_down = true;
-            } else
-            {
-                unregister_code(KC_F);
-                f_down = false;
+                register_code(KC_A);
+                a_down = true;
+            } else {
+                unregister_code(KC_A);
+                a_down = false;
 
-                if (s_down)
-                {
-                    register_code(KC_S);
+                if (d_down) {
+                    register_code(KC_D);
+                }
+
+            }
+            return false;
+            break;
+        case SOCD_S:
+            if (record->event.pressed) {
+                if (w_down) {
+                    unregister_code(KC_W);
+                }
+                register_code(KC_S);
+                s_down = true;
+            } else {
+                unregister_code(KC_S);
+                s_down = false;
+
+                if (w_down) {
+                    register_code(KC_W);
+                }
+
+            }
+            return false;
+            break;
+        case SOCD_D:
+            if (record->event.pressed) {
+                if (a_down) {
+                    unregister_code(KC_A);
+                }
+                register_code(KC_D);
+                d_down = true;
+            } else {
+                unregister_code(KC_D);
+                d_down = false;
+
+                if (a_down) {
+                    register_code(KC_A);
                 }
             }
             return false;
@@ -73,5 +108,4 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef OTHER_KEYMAP_C
 #    include OTHER_KEYMAP_C
 #endif // OTHER_KEYMAP_C
-
 

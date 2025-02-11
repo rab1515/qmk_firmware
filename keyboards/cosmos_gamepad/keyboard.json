@@ -38,7 +38,7 @@
         },
         "animations" : {
             "static_light": true,
-            "rainbow_mood": false,
+            "rainbow_mood": true,
             "rainbow_swirl": true,
             "snake": false,
             "knight": true,
@@ -47,8 +47,8 @@
             "twinkle": false,
             "christmas": false,
             "rgb_test": false,
-            "alternating": false,
-        },
+            "alternating": false
+        }
     },
     "ws2812": {
         "pin" : "GP23",
