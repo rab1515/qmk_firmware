@@ -7,7 +7,7 @@
     "features": {
         "bootmagic": true,
         "command": false,
-        "console": true,
+        "console": false,
         "extrakey": true,
         "rgblight": true,
         "nkro": true
@@ -17,7 +17,7 @@
         "matrix": [2,0]
     },
     "matrix_pins": {
-        "rows": [ "GP17", "GP26", "GP22", "GP21", "GP20", "GP19", "GP18"],
+        "rows": [ "GP17", "GP6", "GP22", "GP21", "GP20", "GP19", "GP18"],
         "cols": ["GP7", "GP8", "GP9", "GP10", "GP11", "GP12", "GP13" ]
     },
     "processor": "RP2040",
